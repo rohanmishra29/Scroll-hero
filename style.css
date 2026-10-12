@@ -1,0 +1,89 @@
+:root {
+  --accent: #ff8a2b;
+}
+
+html { background: #0b0b0f; }
+body { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+#hero {
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(255, 138, 43, 0.14), transparent 70%),
+    #0b0b0f;
+}
+
+/* ---------- Headline ---------- */
+.headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.55em;
+  font-size: clamp(1.4rem, 5.2vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  line-height: 1.1;
+}
+.word { display: inline-flex; overflow: hidden; padding-bottom: 0.1em; }
+.char { display: inline-block; will-change: transform, opacity; }
+
+/* ---------- Stats ---------- */
+.stat { will-change: transform, opacity; }
+.stat__num {
+  font-size: clamp(2rem, 4.6vw, 3.75rem);
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.stat__label {
+  margin: 0.4rem auto 0;
+  max-width: 14rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Road ---------- */
+.road {
+  background: linear-gradient(90deg, #14141a, #1a1a22 50%, #14141a);
+  z-index: 0;
+}
+.road__edge {
+  position: absolute; top: 0; bottom: 0; width: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.road__edge--l { left: 6%; }
+.road__edge--r { right: 6%; }
+
+/* Tall strip of dashes, moved with translateY (no layout work) */
+.road__lanes {
+  position: absolute; left: 50%; top: -100%;
+  width: 6px; height: 300%;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    to bottom, rgba(255, 255, 255, 0.55) 0 60px, transparent 60px 140px);
+  will-change: transform;
+}
+
+/* ---------- Car ---------- */
+.car {
+  position: absolute;
+  left: 50%;
+  bottom: -8vh;
+  width: clamp(110px, 13vw, 190px);
+  margin-left: calc(clamp(110px, 13vw, 190px) / -2);
+  z-index: 5;
+  will-change: transform;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6));
+}
+.car svg { display: block; width: 100%; height: auto; }
+
+/* ---------- Hint ---------- */
+.hint {
+  position: absolute; bottom: 2.2vh; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

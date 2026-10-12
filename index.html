@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome ItzFizz | Scroll Hero</title>
+
+  <!-- Tailwind (CDN) + GSAP + ScrollTrigger -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-[#0b0b0f] text-white antialiased">
+
+  <!-- ================= HERO ================= -->
+  <section id="hero" class="relative h-screen w-full overflow-hidden">
+
+    <!-- Road: lane markings (animated with transform only) -->
+    <div class="road absolute inset-y-0 left-1/2 w-[34vw] min-w-[240px] max-w-[460px] -translate-x-1/2">
+      <div class="road__edge road__edge--l"></div>
+      <div class="road__edge road__edge--r"></div>
+      <div class="road__lanes" id="lanes"></div>
+    </div>
+
+    <!-- Headline + stats -->
+    <div class="relative z-10 flex h-full flex-col items-center px-4 pt-[9vh] text-center">
+      <h1 id="headline" class="headline" aria-label="Welcome ItzFizz"></h1>
+
+      <div id="stats" class="mt-[5vh] grid w-full max-w-5xl grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
+        <article class="stat">
+          <p class="stat__num"><span data-count="58">0</span>%</p>
+          <p class="stat__label">Increase in pick up point use</p>
+        </article>
+        <article class="stat">
+          <p class="stat__num"><span data-count="23">0</span>%</p>
+          <p class="stat__label">Decrease in customer phone calls</p>
+        </article>
+        <article class="stat">
+          <p class="stat__num"><span data-count="27">0</span>%</p>
+          <p class="stat__label">Increase in pick up point use</p>
+        </article>
+        <article class="stat">
+          <p class="stat__num"><span data-count="40">0</span>%</p>
+          <p class="stat__label">Decrease in customer phone calls</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Car (top view, inline SVG so no external asset is needed) -->
+    <div id="car" class="car" aria-hidden="true">
+      <svg viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="body" x1="0" x2="1">
+            <stop offset="0" stop-color="#ff6a1a" />
+            <stop offset=".5" stop-color="#ff9a3c" />
+            <stop offset="1" stop-color="#e5520a" />
+          </linearGradient>
+          <linearGradient id="glass" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#1b2a3a" />
+            <stop offset="1" stop-color="#0a1018" />
+          </linearGradient>
+        </defs>
+        <!-- shadow -->
+        <ellipse cx="60" cy="140" rx="54" ry="118" fill="#000" opacity=".35" />
+        <!-- wheels -->
+        <rect x="4" y="38" width="16" height="42" rx="6" fill="#111" />
+        <rect x="100" y="38" width="16" height="42" rx="6" fill="#111" />
+        <rect x="2" y="168" width="18" height="46" rx="6" fill="#111" />
+        <rect x="100" y="168" width="18" height="46" rx="6" fill="#111" />
+        <!-- body -->
+        <path d="M60 4 C92 4 104 40 106 84 C108 130 110 190 104 232 C100 252 80 256 60 256
+                 C40 256 20 252 16 232 C10 190 12 130 14 84 C16 40 28 4 60 4Z" fill="url(#body)" />
+        <!-- hood lines -->
+        <path d="M44 22 C46 56 46 80 44 98 M76 22 C74 56 74 80 76 98" stroke="#b83c00" stroke-width="2" fill="none" opacity=".6" />
+        <!-- cabin / glass -->
+        <path d="M32 104 C34 94 46 90 60 90 C74 90 86 94 88 104 L92 160 C92 168 82 172 60 172
+                 C38 172 28 168 28 160Z" fill="url(#glass)" />
+        <!-- rear deck -->
+        <path d="M34 186 C46 182 74 182 86 186 L84 232 C74 240 46 240 36 232Z" fill="#d94e08" />
+        <!-- headlights / taillights -->
+        <path d="M26 30 L44 18 L42 28 L28 38Z M94 30 L76 18 L78 28 L92 38Z" fill="#fff6d6" />
+        <rect x="30" y="246" width="20" height="4" rx="2" fill="#ff2a2a" />
+        <rect x="70" y="246" width="20" height="4" rx="2" fill="#ff2a2a" />
+      </svg>
+    </div>
+
+    <p id="hint" class="hint">Scroll</p>
+  </section>
+
+  <!-- ================= NEXT SECTION (proves scroll continues) ================= -->
+  <section class="flex min-h-screen items-center justify-center bg-[#f4f1ea] px-6 text-[#0b0b0f]">
+    <div class="max-w-2xl text-center">
+      <h2 class="text-4xl font-semibold md:text-6xl">Built for motion.</h2>
+      <p class="mt-6 text-lg text-black/60">
+        The car's movement is driven entirely by scroll position using GSAP ScrollTrigger,
+        with smoothing applied through the scrub value.
+      </p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
